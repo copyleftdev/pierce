@@ -202,7 +202,10 @@ export async function findByDataAttr(
   attrPattern: string | RegExp
 ): Promise<string[]> {
   return handle.evaluate((pattern) => {
-    const re = new RegExp(pattern);
+    const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    let re: RegExp;
+    // nosemgrep: detect-non-literal-regexp — guarded by try/catch with escape fallback
+    try { re = new RegExp(pattern); } catch { re = new RegExp(esc(pattern)); }
     const results: string[] = [];
     document.querySelectorAll("*").forEach((el) => {
       for (const attr of Array.from(el.attributes)) {

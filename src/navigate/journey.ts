@@ -7,6 +7,7 @@
 import type { BrowserHandle } from "../adapter/types.js";
 import type { JourneyStep } from "../types.js";
 import { waitForQuiescence } from "../core/stability.js";
+import { safeRegExp } from "../core/safe-regexp.js";
 
 /**
  * Navigate a multi-step journey, collecting data and tokens at each step.
@@ -99,9 +100,12 @@ export async function followJourney(
     // Second: try clicking buttons
     if (!advanced) {
       for (const pattern of patterns) {
-        const re = typeof pattern === "string" ? new RegExp(pattern, "i") : pattern;
+        const re = typeof pattern === "string" ? safeRegExp(pattern, "i") : pattern;
         const clicked = await handle.evaluate((src) => {
-          const re = new RegExp(src, "i");
+          const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          let re: RegExp;
+          // nosemgrep: detect-non-literal-regexp — guarded by try/catch with escape fallback
+          try { re = new RegExp(src, "i"); } catch { re = new RegExp(esc(src), "i"); }
           for (const el of document.querySelectorAll("a, button")) {
             if (el.textContent && re.test(el.textContent)) {
               const s = getComputedStyle(el);

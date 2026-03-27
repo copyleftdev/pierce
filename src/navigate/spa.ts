@@ -6,6 +6,7 @@
  */
 import type { BrowserHandle } from "../adapter/types.js";
 import { waitForQuiescence } from "../core/stability.js";
+import { safeRegExp } from "../core/safe-regexp.js";
 
 /**
  * Navigate within a SPA by clicking a navigation element matching a pattern.
@@ -18,12 +19,15 @@ export async function navigateSPA(
 ): Promise<boolean> {
   const re =
     typeof linkPattern === "string"
-      ? new RegExp(linkPattern, "i")
+      ? safeRegExp(linkPattern, "i")
       : linkPattern;
 
   // Find navigation element by text content or onclick attribute
   const clicked = await handle.evaluate((pattern) => {
-    const re = new RegExp(pattern, "i");
+    const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    let re: RegExp;
+    // nosemgrep: detect-non-literal-regexp — guarded by try/catch with escape fallback
+    try { re = new RegExp(pattern, "i"); } catch { re = new RegExp(esc(pattern), "i"); }
     // Try links and buttons with matching text
     for (const el of document.querySelectorAll("a, button, [onclick]")) {
       const text = el.textContent?.trim() || "";

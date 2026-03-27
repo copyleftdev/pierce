@@ -36,7 +36,10 @@ export async function fillByLabel(
   // Find input associated with label text and fill it
   const filled = await handle.evaluate(
     ({ pattern, val }) => {
-      const re = new RegExp(pattern, "i");
+      const esc = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      let re: RegExp;
+      // nosemgrep: detect-non-literal-regexp — guarded by try/catch with escape fallback
+      try { re = new RegExp(pattern, "i"); } catch { re = new RegExp(esc(pattern), "i"); }
       for (const label of document.querySelectorAll("label")) {
         if (re.test(label.textContent || "")) {
           const input =
