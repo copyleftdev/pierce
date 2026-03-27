@@ -9,7 +9,7 @@
       <span class="pierce-hero-badge-dot"></span>
       Framework-agnostic &middot; Entropy-tolerant &middot; TypeScript-first
     </div>
-    <img src="logo.png" alt="pierce" class="pierce-hero-logo">
+    <img src="logo.png" alt="pierce — entropy-tolerant web scraping library for Playwright and Puppeteer that pierces Shadow DOM, iframes, and anti-bot defenses" class="pierce-hero-logo">
     <h1>pierce</h1>
     <p class="pierce-hero-sub">
       Extraction primitives that <strong>pierce through any DOM</strong>.
@@ -33,11 +33,11 @@
   </div>
 </div>
 
-## Why pierce?
+## Why pierce? A web scraping library that survives DOM mutation
 
-Scrapers break when sites change their DOM. Class names shift, IDs get randomized, structures mutate. Every selector you hardcode is a future failure.
+Web scrapers break when sites change their DOM. Class names shift, IDs get randomized, structures mutate. Every hardcoded selector — whether in Playwright, Puppeteer, Selenium, or Cheerio — is a future failure point.
 
-**pierce** takes a different approach. Instead of targeting specific elements, it uses:
+**pierce** takes a different approach to browser automation and data extraction. Instead of targeting specific elements, it uses:
 
 - **Semantic HTML tags** over IDs and class names
 - **Computed styles** over attribute string matching
