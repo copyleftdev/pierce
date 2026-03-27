@@ -11,7 +11,7 @@ build-dir = "book"
 [output.html]
 default-theme = "ayu"
 preferred-dark-theme = "ayu"
-git-repository-url = "https://github.com/user/pierce"
+git-repository-url = "https://github.com/copyleftdev/pierce"
 additional-css = ["theme/custom.css"]
 additional-js = ["theme/hero.js"]
 no-section-label = false

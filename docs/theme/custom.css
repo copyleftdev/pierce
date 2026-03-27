@@ -52,6 +52,18 @@ code, pre, .hljs {
   50% { opacity: 1; }
 }
 
+.pierce-hero-logo {
+  width: 180px;
+  height: 180px;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 40px rgba(129,140,248,0.3));
+  animation: heroLogoFloat 6s ease-in-out infinite;
+}
+@keyframes heroLogoFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
 .pierce-hero-orb {
   position: absolute;
   border-radius: 50%;

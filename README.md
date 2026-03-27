@@ -1,8 +1,13 @@
-# pierce
+<p align="center">
+  <img src="media/logo.png" alt="pierce" width="240">
+</p>
 
-Entropy-tolerant extraction primitives that pierce through any DOM.
+<h1 align="center">pierce</h1>
 
-Framework-agnostic. Works with Playwright, Puppeteer, or your own adapter.
+<p align="center">
+  Entropy-tolerant extraction primitives that pierce through any DOM.<br>
+  Framework-agnostic. Works with Playwright, Puppeteer, or your own adapter.
+</p>
 
 ## Install
 

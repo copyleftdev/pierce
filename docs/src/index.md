@@ -9,6 +9,7 @@
       <span class="pierce-hero-badge-dot"></span>
       Framework-agnostic &middot; Entropy-tolerant &middot; TypeScript-first
     </div>
+    <img src="logo.png" alt="pierce" class="pierce-hero-logo">
     <h1>pierce</h1>
     <p class="pierce-hero-sub">
       Extraction primitives that <strong>pierce through any DOM</strong>.
@@ -18,7 +19,7 @@
     <div class="pierce-hero-actions">
       <a href="guide/getting-started.html" class="pierce-btn pierce-btn-primary">Get Started</a>
       <a href="benchmark/proteus.html" class="pierce-btn pierce-btn-ghost">Benchmarks</a>
-      <a href="https://github.com/user/pierce" class="pierce-btn pierce-btn-ghost">GitHub</a>
+      <a href="https://github.com/copyleftdev/pierce" class="pierce-btn pierce-btn-ghost">GitHub</a>
     </div>
     <div class="pierce-hero-install">
       <span class="prompt">$</span>
