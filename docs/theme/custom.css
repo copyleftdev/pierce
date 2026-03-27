@@ -1,0 +1,291 @@
+/* ─── pierce — mdBook custom theme ─── */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  --accent: #818cf8;
+  --accent-bright: #a5b4fc;
+  --green: #34d399;
+  --amber: #fbbf24;
+}
+
+/* Override fonts */
+.ayu {
+  --sidebar-bg: #0d1117;
+  --sidebar-fg: #a1a1aa;
+  --sidebar-active: #a5b4fc;
+  --page-background: #09090b;
+  --color-fg: #e4e4e7;
+  --mono-font: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+body, .sidebar, .content {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+code, pre, .hljs {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+}
+
+/* ─── Hero section (injected on index page) ─── */
+.pierce-hero {
+  position: relative;
+  margin: -15px -15px 3rem;
+  padding: 6rem 2rem;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 0 0 16px 16px;
+  background: #09090b;
+}
+
+.pierce-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(129,140,248,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(129,140,248,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: heroGridPulse 8s ease-in-out infinite;
+}
+@keyframes heroGridPulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+.pierce-hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.12;
+  animation: heroOrbFloat 20s ease-in-out infinite;
+}
+.pierce-hero-orb-1 { width: 500px; height: 500px; background: #818cf8; top: -150px; left: -50px; }
+.pierce-hero-orb-2 { width: 400px; height: 400px; background: #34d399; bottom: -100px; right: -50px; animation-delay: -7s; }
+.pierce-hero-orb-3 { width: 350px; height: 350px; background: #c084fc; top: 20%; right: 5%; animation-delay: -14s; }
+@keyframes heroOrbFloat {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(25px,-35px) scale(1.04); }
+  66% { transform: translate(-15px,25px) scale(0.96); }
+}
+
+.pierce-hero-scan {
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #818cf8, transparent);
+  opacity: 0.25;
+  animation: heroScan 4s linear infinite;
+}
+@keyframes heroScan {
+  0% { top: -2px; }
+  100% { top: 100%; }
+}
+
+.pierce-hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.pierce-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  background: rgba(129,140,248,0.08);
+  border: 1px solid rgba(129,140,248,0.2);
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #a5b4fc;
+  margin-bottom: 1.5rem;
+}
+.pierce-hero-badge-dot {
+  width: 6px; height: 6px;
+  background: #34d399;
+  border-radius: 50%;
+  animation: heroDot 2s ease-in-out infinite;
+}
+@keyframes heroDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.pierce-hero h1 {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, #a5b4fc, #c084fc, #818cf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pierce-hero-sub {
+  font-size: clamp(1rem, 1.8vw, 1.25rem);
+  color: #a1a1aa;
+  max-width: 580px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+.pierce-hero-sub strong { color: #fafafa; font-weight: 600; }
+
+.pierce-hero-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.pierce-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+  cursor: pointer;
+  border: none;
+}
+.pierce-btn-primary { background: #818cf8; color: #fff; }
+.pierce-btn-primary:hover { background: #a5b4fc; transform: translateY(-1px); box-shadow: 0 6px 24px rgba(129,140,248,0.3); }
+.pierce-btn-ghost { background: transparent; color: #a1a1aa; border: 1px solid #27272a; }
+.pierce-btn-ghost:hover { color: #fafafa; border-color: #3f3f46; }
+
+.pierce-hero-install {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: #0f0f12;
+  border: 1px solid #27272a;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: #a1a1aa;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.pierce-hero-install:hover { border-color: #818cf8; }
+.pierce-hero-install .prompt { color: #818cf8; }
+.pierce-hero-install .cmd { color: #fafafa; }
+
+/* ─── Stats bar ─── */
+.pierce-stats {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+.pierce-stat {
+  text-align: center;
+}
+.pierce-stat-num {
+  font-size: 1.8rem;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+.pierce-stat-num.green { color: #34d399; }
+.pierce-stat-num.accent { color: #a5b4fc; }
+.pierce-stat-num.amber { color: #fbbf24; }
+.pierce-stat-label {
+  font-size: 0.75rem;
+  color: #71717a;
+  margin-top: 0.15rem;
+}
+
+/* ─── Feature cards ─── */
+.pierce-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+.pierce-feature {
+  padding: 1.25rem;
+  background: #18181b;
+  border: 1px solid #27272a;
+  border-radius: 10px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.pierce-feature:hover { border-color: #3f3f46; transform: translateY(-1px); }
+.pierce-feature h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.pierce-feature p {
+  font-size: 0.85rem;
+  color: #a1a1aa;
+  line-height: 1.5;
+}
+
+/* ─── Benchmark table styling ─── */
+.pierce-bench {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  margin: 1.5rem 0;
+}
+.pierce-bench th, .pierce-bench td {
+  padding: 0.6rem 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid #27272a;
+}
+.pierce-bench th {
+  color: #71717a;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.pierce-bench td { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
+.pass { color: #34d399; font-weight: 600; }
+.partial { color: #fbbf24; font-weight: 600; }
+.fail { color: #f87171; font-weight: 600; }
+
+/* ─── Entropy grid ─── */
+.entropy-grid {
+  display: grid;
+  grid-template-columns: auto repeat(5, 1fr);
+  gap: 2px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  margin: 1.5rem 0;
+}
+.entropy-grid > div {
+  padding: 0.5rem 0.6rem;
+  text-align: center;
+  background: #18181b;
+  border-radius: 4px;
+}
+.entropy-grid .header {
+  color: #71717a;
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  background: transparent;
+}
+.entropy-grid .seed-label {
+  text-align: right;
+  color: #a1a1aa;
+  font-weight: 600;
+  background: transparent;
+}
+
+/* ─── Clean up mdBook chrome ─── */
+.sidebar .sidebar-scrollbox {
+  padding-top: 1rem;
+}
+
+/* Code block refinements */
+pre {
+  border-radius: 8px !important;
+  border: 1px solid #27272a !important;
+}

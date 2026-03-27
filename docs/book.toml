@@ -1,0 +1,17 @@
+[book]
+title = "pierce"
+description = "Entropy-tolerant extraction primitives that pierce through any DOM"
+authors = []
+language = "en"
+src = "src"
+
+[build]
+build-dir = "book"
+
+[output.html]
+default-theme = "ayu"
+preferred-dark-theme = "ayu"
+git-repository-url = "https://github.com/user/pierce"
+additional-css = ["theme/custom.css"]
+additional-js = ["theme/hero.js"]
+no-section-label = false

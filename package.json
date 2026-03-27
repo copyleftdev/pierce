@@ -1,0 +1,84 @@
+{
+  "name": "pierce",
+  "version": "0.1.0",
+  "description": "Entropy-tolerant extraction primitives that pierce through any DOM. Framework-agnostic — works with Playwright, Puppeteer, or your own adapter.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./adapter/playwright": {
+      "types": "./dist/adapter/playwright.d.ts",
+      "import": "./dist/adapter/playwright.js"
+    },
+    "./adapter/puppeteer": {
+      "types": "./dist/adapter/puppeteer.d.ts",
+      "import": "./dist/adapter/puppeteer.js"
+    },
+    "./extract": {
+      "types": "./dist/extract/index.d.ts",
+      "import": "./dist/extract/index.js"
+    },
+    "./detect": {
+      "types": "./dist/detect/index.d.ts",
+      "import": "./dist/detect/index.js"
+    },
+    "./pierce": {
+      "types": "./dist/pierce/index.d.ts",
+      "import": "./dist/pierce/index.js"
+    },
+    "./navigate": {
+      "types": "./dist/navigate/index.d.ts",
+      "import": "./dist/navigate/index.js"
+    },
+    "./interact": {
+      "types": "./dist/interact/index.d.ts",
+      "import": "./dist/interact/index.js"
+    },
+    "./session": {
+      "types": "./dist/session/index.d.ts",
+      "import": "./dist/session/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run",
+    "test:stress": "node dist-test/test/harness/run.js --stress",
+    "harness": "node dist-test/test/harness/run.js"
+  },
+  "peerDependencies": {
+    "playwright": ">=1.40.0",
+    "puppeteer": "^24.40.0"
+  },
+  "peerDependenciesMeta": {
+    "playwright": {
+      "optional": true
+    },
+    "puppeteer": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "playwright": "^1.58.0",
+    "typescript": "^5.7.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "scraping",
+    "playwright",
+    "puppeteer",
+    "browser-automation",
+    "dom-extraction",
+    "shadow-dom",
+    "entropy-tolerant",
+    "anti-bot",
+    "web-scraping"
+  ]
+}
