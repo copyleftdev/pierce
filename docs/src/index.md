@@ -1,92 +1,57 @@
-<div class="pierce-hero">
-  <div class="pierce-hero-grid"></div>
-  <div class="pierce-hero-orb pierce-hero-orb-1"></div>
-  <div class="pierce-hero-orb pierce-hero-orb-2"></div>
-  <div class="pierce-hero-orb pierce-hero-orb-3"></div>
-  <div class="pierce-hero-scan"></div>
-  <div class="pierce-hero-inner">
-    <div class="pierce-hero-badge">
-      <span class="pierce-hero-badge-dot"></span>
-      Framework-agnostic &middot; Entropy-tolerant &middot; TypeScript-first
-    </div>
-    <img src="logo.png" alt="pierce — entropy-tolerant web scraping library for Playwright and Puppeteer that pierces Shadow DOM, iframes, and anti-bot defenses" class="pierce-hero-logo">
-    <h1>pierce</h1>
-    <p class="pierce-hero-sub">
-      Extraction primitives that <strong>pierce through any DOM</strong>.
-      Shadow roots, iframes, obfuscation, honeypots, polymorphic markup &mdash;
-      nothing hides.
-    </p>
-    <div class="pierce-hero-actions">
-      <a href="guide/getting-started.html" class="pierce-btn pierce-btn-primary">Get Started</a>
-      <a href="benchmark/proteus.html" class="pierce-btn pierce-btn-ghost">Benchmarks</a>
-      <a href="https://github.com/copyleftdev/pierce" class="pierce-btn pierce-btn-ghost">GitHub</a>
-    </div>
-    <div class="pierce-hero-install">
-      <span class="prompt">$</span>
-      <span class="cmd">npm install pierce</span>
-    </div>
-    <div class="pierce-stats">
-      <div class="pierce-stat"><div class="pierce-stat-num green">35/35</div><div class="pierce-stat-label">Proteus challenges</div></div>
-      <div class="pierce-stat"><div class="pierce-stat-num accent">97.9%</div><div class="pierce-stat-label">Full entropy pass rate</div></div>
-      <div class="pierce-stat"><div class="pierce-stat-num amber">0</div><div class="pierce-stat-label">Framework lock-in</div></div>
-    </div>
-  </div>
-</div>
+<p align="center">
+  <img src="logo.png" alt="pierce — entropy-tolerant web scraping library for Playwright and Puppeteer" width="200">
+</p>
 
-## Why pierce? A web scraping library that survives DOM mutation
+# pierce
 
-Web scrapers break when sites change their DOM. Class names shift, IDs get randomized, structures mutate. Every hardcoded selector — whether in Playwright, Puppeteer, Selenium, or Cheerio — is a future failure point.
+Entropy-tolerant extraction primitives that pierce through any DOM. Framework-agnostic — works with Playwright, Puppeteer, or your own adapter.
 
-**pierce** takes a different approach to browser automation and data extraction. Instead of targeting specific elements, it uses:
+Scrapers break when sites change their DOM. Class names shift, IDs get randomized, structures mutate. pierce uses semantic tags, computed styles, and DOM quiescence instead of hardcoded selectors, so your extraction survives.
 
-- **Semantic HTML tags** over IDs and class names
-- **Computed styles** over attribute string matching
-- **DOM quiescence** over selector-based waits
-- **Full tree traversal** over `getElementById`
-- **Multi-strategy extraction** with confidence scoring
-
-The result: primitives that work regardless of how the DOM is structured.
-
-## Quick look
+```sh
+npm install pierce
+```
 
 ```typescript
 import { fromPlaywright } from 'pierce/adapter/playwright'
 import { extractTable, detectHoneypots, waitForQuiescence } from 'pierce'
 
-const handle = fromPlaywright(page)  // one line to adapt
+const handle = fromPlaywright(page)
 
 await handle.goto('https://example.com')
-await waitForQuiescence(handle)       // wait for DOM to settle, not a selector
+await waitForQuiescence(handle)
 
-const table = await extractTable(handle)      // multi-strategy extraction
-const traps = await detectHoneypots(handle)   // computed visibility, not class names
+const table = await extractTable(handle)
+const traps = await detectHoneypots(handle)
 ```
 
-## Primitives at a glance
+## Primitives
 
-<div class="pierce-features">
-  <div class="pierce-feature">
-    <h4>extract</h4>
-    <p>Tables, text, structured data, CSS variables, pseudo-elements, SVG, canvas draw calls.</p>
-  </div>
-  <div class="pierce-feature">
-    <h4>detect</h4>
-    <p>Honeypot fields, decoy records, element visibility &mdash; all via computed styles.</p>
-  </div>
-  <div class="pierce-feature">
-    <h4>pierce</h4>
-    <p>Shadow DOM (open + closed), recursive iframes, AJAX/dynamic content.</p>
-  </div>
-  <div class="pierce-feature">
-    <h4>navigate</h4>
-    <p>Semantic pagination, SPA routing, multi-step state machine journeys.</p>
-  </div>
-  <div class="pierce-feature">
-    <h4>interact</h4>
-    <p>Bezier mouse movement, human typing, math CAPTCHA solving, adaptive timing.</p>
-  </div>
-  <div class="pierce-feature">
-    <h4>session</h4>
-    <p>Anti-detection stealth, cookie management, shadow DOM interception.</p>
-  </div>
-</div>
+| Module | What it does |
+|--------|-------------|
+| **extract** | Tables, text, structured data, CSS variables, pseudo-elements, SVG, canvas |
+| **detect** | Honeypots, decoys, computed visibility |
+| **pierce** | Shadow DOM (open + closed), iframes, AJAX/dynamic content |
+| **navigate** | Pagination, SPA routing, multi-step journeys |
+| **interact** | Bezier mouse movement, human typing, CAPTCHA solving |
+| **session** | Stealth profile, cookies, anti-detection |
+
+## Adapters
+
+```typescript
+import { fromPlaywright } from 'pierce/adapter/playwright'   // Playwright
+import { fromPuppeteer } from 'pierce/adapter/puppeteer'     // Puppeteer
+import type { BrowserHandle } from 'pierce'                  // Roll your own
+```
+
+## Benchmark
+
+Validated against [Proteus](https://proteus.terrabench.io) — 35 challenges, 5 seeds x 5 entropy levels = 875 runs, 97.9% pass rate.
+
+| Tier | Result |
+|------|--------|
+| Basic (7) | 175/175 |
+| Scraper (9) | 215/225 |
+| Anti-Bot (11) | 275/275 |
+| Expert (8) | 192/200 |
+| **Total** | **857/875** |
