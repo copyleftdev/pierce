@@ -5,16 +5,6 @@
 ```sh
 git clone https://github.com/copyleftdev/pierce.git
 cd pierce
-npm install
-npm run build
-```
-
-pierce has **optional** peer dependencies on `playwright` and `puppeteer`. Install whichever framework you use:
-
-```sh
-# Pick one (or both)
-npm install playwright
-npm install puppeteer
 ```
 
 ## Your first extraction

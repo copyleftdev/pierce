@@ -14,8 +14,6 @@
 ```sh
 git clone https://github.com/copyleftdev/pierce.git
 cd pierce
-npm install
-npm run build
 ```
 
 ## Quickstart

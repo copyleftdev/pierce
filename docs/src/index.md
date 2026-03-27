@@ -11,8 +11,6 @@ Scrapers break when sites change their DOM. Class names shift, IDs get randomize
 ```sh
 git clone https://github.com/copyleftdev/pierce.git
 cd pierce
-npm install
-npm run build
 ```
 
 ```typescript
