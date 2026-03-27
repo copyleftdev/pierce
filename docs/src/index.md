@@ -9,7 +9,10 @@ Entropy-tolerant extraction primitives that pierce through any DOM. Framework-ag
 Scrapers break when sites change their DOM. Class names shift, IDs get randomized, structures mutate. pierce uses semantic tags, computed styles, and DOM quiescence instead of hardcoded selectors, so your extraction survives.
 
 ```sh
-npm install pierce
+git clone https://github.com/copyleftdev/pierce.git
+cd pierce
+npm install
+npm run build
 ```
 
 ```typescript

@@ -3,7 +3,10 @@
 ## Install
 
 ```sh
-npm install pierce
+git clone https://github.com/copyleftdev/pierce.git
+cd pierce
+npm install
+npm run build
 ```
 
 pierce has **optional** peer dependencies on `playwright` and `puppeteer`. Install whichever framework you use:
